@@ -64,15 +64,7 @@ class AppDrawer extends StatelessWidget {
                 MaterialPageRoute(builder: (_) => LoginScreen()),
                     (route) => false,
               );
-              // context.read<AuthCubit>().logout();
-              //
-              // Navigator.pushAndRemoveUntil(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (_) =>  LoginScreen(),
-              //   ),
-              //       (route) => false,
-              // );
+
             },
           ),
         ],
