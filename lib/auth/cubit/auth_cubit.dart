@@ -71,17 +71,7 @@ class AuthCubit extends Cubit<AuthState> {
     return user?['name'] ?? 'Guest';
   }
 
-  // void logout() {
-  //   emit(AuthInitial());
-  // }
 
-  // Future<void> logout() async {
-  //   currentUser = null;
-  //   currentEmail = null;
-  //
-  //
-  //   emit(AuthInitial());
-  // }
   Future<void> logout() async {
     if (isClosed) return;
 
