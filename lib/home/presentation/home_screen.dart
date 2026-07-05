@@ -18,13 +18,25 @@ class HomeWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return
+    //   MultiBlocProvider(
+    //   providers: [
+    //     BlocProvider(
+    //       create: (_) => AuthCubit(
+    //         AuthRepo(AuthLocalData()),
+    //       )..loadUser(),
+    //     ),
+    //     BlocProvider(
+    //       create: (_) => MealsCubit(
+    //         MealsRepo(MealsLocalDataSource()),
+    //       )..loadMeals(),
+    //     ),
+    //   ],
+    //   child: const HomeScreen(),
+    // );
+    MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => AuthCubit(
-            AuthRepo(AuthLocalData()),
-          )..loadUser(),
-        ),
+
         BlocProvider(
           create: (_) => MealsCubit(
             MealsRepo(MealsLocalDataSource()),

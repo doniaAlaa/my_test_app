@@ -30,11 +30,15 @@ class LoginScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
-                if (state is LoginSuccess) {
+                // if (state is LoginSuccess) {
+                if (state is UserLoaded) {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) =>  HomeWrapper(),
+                      builder: (_) => BlocProvider.value(
+                        value: context.read<AuthCubit>(), // Same cubit
+                        child: const HomeWrapper(),
+                      ),
                     ),
                   );
                 }

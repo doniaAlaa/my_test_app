@@ -15,10 +15,25 @@ class AuthLocalData {
 
 
 
-   Future<UserModel?> getUser() async {
-      final db = await DBHelper.database; //
+  //  Future<UserModel?> getUser() async {
+  //     final db = await DBHelper.database; //
+  //
+  //   final result = await db.query('users');
+  //
+  //   if (result.isNotEmpty) {
+  //     return UserModel.fromMap(result.first);
+  //   }
+  //
+  //   return null;
+  // }
+  Future<UserModel?> getUser(String email) async {
+    final db = await DBHelper.database;
 
-    final result = await db.query('users');
+    final result = await db.query(
+      'users',
+      where: 'email = ?',
+      whereArgs: [email],
+    );
 
     if (result.isNotEmpty) {
       return UserModel.fromMap(result.first);

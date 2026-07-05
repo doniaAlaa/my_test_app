@@ -17,7 +17,7 @@ class AuthRepo {
   }
 
 
-  Future<UserModel?> getUser() async {
-    return await local.getUser();
+  Future<UserModel?> getUser(String email) async {
+    return await local.getUser(email);
   }
 }

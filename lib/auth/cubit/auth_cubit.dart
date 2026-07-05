@@ -10,6 +10,8 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.repo) : super(AuthInitial());
 
   /// LOGIN
+  String? currentEmail;
+  UserModel? currentUser;
 
 
   Future<void> login(String email, String password) async {
@@ -19,8 +21,12 @@ class AuthCubit extends Cubit<AuthState> {
     print(user?.email);
 
     if (user != null) {
-      // print('objectyyyyyyy');
-      emit(LoginSuccess());
+
+      // emit(LoginSuccess());
+      currentUser = user; //
+      currentEmail= user.email;
+
+      emit(UserLoaded(user)); //
 
     } else {
       emit(LoginError("Invalid email or password"));
@@ -46,9 +52,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> loadUser() async {
     emit(AuthInitial());
+    print(currentEmail);
 
     try {
-      final user = await repo.getUser();
+      final user = await repo.getUser(currentEmail!);
 
       if (user != null) {
         emit(UserLoaded(user)); //
@@ -64,8 +71,26 @@ class AuthCubit extends Cubit<AuthState> {
     return user?['name'] ?? 'Guest';
   }
 
-  void logout() {
-    emit(AuthInitial());
+  // void logout() {
+  //   emit(AuthInitial());
+  // }
+
+  // Future<void> logout() async {
+  //   currentUser = null;
+  //   currentEmail = null;
+  //
+  //
+  //   emit(AuthInitial());
+  // }
+  Future<void> logout() async {
+    if (isClosed) return;
+
+    currentUser = null;
+    currentEmail = null;
+
+    if (!isClosed) {
+      emit(AuthInitial());
+    }
   }
 
 }

@@ -55,15 +55,24 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.logout, color: Colors.red),
             title: const Text("Logout"),
             onTap: () {
-              context.read<AuthCubit>().logout();
+               context.read<AuthCubit>().logout();
+
+              if (!context.mounted) return;
 
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(
-                  builder: (_) =>  LoginScreen(),
-                ),
+                MaterialPageRoute(builder: (_) => LoginScreen()),
                     (route) => false,
               );
+              // context.read<AuthCubit>().logout();
+              //
+              // Navigator.pushAndRemoveUntil(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (_) =>  LoginScreen(),
+              //   ),
+              //       (route) => false,
+              // );
             },
           ),
         ],
